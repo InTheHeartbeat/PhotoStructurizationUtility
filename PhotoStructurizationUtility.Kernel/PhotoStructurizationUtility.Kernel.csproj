@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{51194AEA-2852-4C1C-A813-295BA3C5FA11}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>PhotoStructurizationUtility</RootNamespace>
-    <AssemblyName>PhotoStructurizationUtility</AssemblyName>
+    <ProjectGuid>{74E51130-0374-4114-802B-3F09DD953582}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhotoStructurizationUtility.Kernel</RootNamespace>
+    <AssemblyName>PhotoStructurizationUtility.Kernel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -46,13 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extentions.cs" />
-    <Compile Include="FileSystemWalker.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="BackCompatibility\BackCompatibilityUtility.cs" />
+    <Compile Include="BackCompatibility\SnapshotEntry.cs" />
+    <Compile Include="Extentions\DirectoryInfoExtentions.cs" />
+    <Compile Include="FileSystem\DirectoryUtility.cs" />
+    <Compile Include="FileSystem\FileSystemWalker.cs" />
+    <Compile Include="Logging\Enums\LogNoteType.cs" />
+    <Compile Include="Logging\LoggerSingleton.cs" />
+    <Compile Include="Logging\LogNote.cs" />
+    <Compile Include="Processing\Processor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\OrientationChecker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
