@@ -18,7 +18,6 @@ namespace PhotoStructurizationUtility.Kernel.BackCompatibility
         public BackCompatibilityUtility()
         {
             LoggerSingleton.GetLogger().Log("Started initializing...", LogNoteType.Info, "BackCompatibility");
-
             _snapshots = new List<SnapshotEntry>();
             LoggerSingleton.GetLogger().Log("Initialized.", LogNoteType.Success, "BackCompatibility");            
         }
@@ -57,7 +56,7 @@ namespace PhotoStructurizationUtility.Kernel.BackCompatibility
                 LoggerSingleton.GetLogger().Log($"Snapshot serializing...", LogNoteType.Info, "BackCompatibility");
                 XmlSerializer formatter = new XmlSerializer(typeof(List<SnapshotEntry>));
 
-                string xmlPath = path + $"bc_snapshot_{DateTime.Now.ToShortDateString().Replace('.', '-')}.xml";
+                string xmlPath = path + $"bc_snapshot_{DateTime.Now.ToShortDateString().Replace('.', '-')}_{Guid.NewGuid().ToString().PadLeft(4)}.xml";
 
                 using (FileStream fs = new FileStream(xmlPath, FileMode.CreateNew))
                 {

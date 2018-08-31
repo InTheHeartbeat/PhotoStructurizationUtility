@@ -11,7 +11,8 @@ namespace PhotoStructurizationUtility.Kernel.FileSystem
     {
         public FileSystemWalker()
         {
-            LoggerSingleton.GetLogger().Log("Initialized.", LogNoteType.Info, "FileSystemWalker");
+            LoggerSingleton.GetLogger().Log("Started initializing...", LogNoteType.Info, "FileSystemWalker");
+            LoggerSingleton.GetLogger().Log("Initialized.", LogNoteType.Success, "FileSystemWalker");
         }
         public void WalkDirectoryTree(DirectoryInfo root, Action<FileInfo> searched)
         {

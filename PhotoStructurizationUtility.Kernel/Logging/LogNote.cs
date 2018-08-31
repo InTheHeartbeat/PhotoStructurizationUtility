@@ -13,11 +13,11 @@ namespace PhotoStructurizationUtility.Kernel.Logging
         public string Message { get; set; }
         public DateTime Created { get; set; }
 
-        public LogNote(string message, LogNoteType noteType = LogNoteType.Message)
+        public LogNote(string message, LogNoteType noteType = LogNoteType.Message, bool captureCreatedDateTime = true)
         {
             NoteType = noteType;
-            Message = message;
             Created = DateTime.Now;
+            Message = captureCreatedDateTime ? Created.ToString("g") + " " + message : message;            
         }
     }
 }

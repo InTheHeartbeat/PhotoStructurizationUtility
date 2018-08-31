@@ -1,52 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using PhotoStructurizationUtility.Kernel.Logging;
+using PhotoStructurizationUtility.Kernel.Logging.Enums;
+using PhotoStructurizationUtility.Kernel.Processing;
 
 namespace PhotoStructurizationUtility
 {
     class Program
-    {
-        private static int processBySizeCounter = 0;
-        private static int photosCounter = 0;
+    {        
+        [STAThread]
         static void Main(string[] args)
         {
-             SearchBySize();
-            Console.ReadLine();
-        }
+            string root = null;
+            string destRoot = null;
 
-        public static void SearchBySize()
-        {
-            FileSystemWalker fileSystemWalker = new FileSystemWalker();
-
-             fileSystemWalker.WalkDirectoryTree(new DirectoryInfo(@"E://Photos/"), ProcessBySize);
-        }
-
-        private static void ProcessBySize(FileInfo file)
-        {
-            try
+            BackgroundWorker worker = new BackgroundWorker {WorkerReportsProgress = true};
+            worker.DoWork += async (sender, eventArgs) =>
             {
-                photosCounter++;
-                Console.WriteLine($"Searched photo #{photosCounter}: ");
-                Console.WriteLine(file.FullName);
-
-                Bitmap photo = new Bitmap(file.FullName);
-                Console.WriteLine($"Width: {photo.Width}");
-                Console.WriteLine($"Height: {photo.Height}");
-
-                if (photo.Width >= 3000 && photo.Height >= 2000)
+                LoggerSingleton.GetLogger().Logged = note =>
                 {
-                    processBySizeCounter++;
-                    file.CopyTo($@"C:/TestSystem/Photos/{file.Name}");
-                    Console.WriteLine("Moved!");
-                }
+                    switch (note.NoteType)
+                    {
+                        case LogNoteType.Info:
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine(note.Message);
+                            break;
+                        case LogNoteType.Warning:
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine(note.Message);
+                            break;
+                        case LogNoteType.Error:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(note.Message);
+                            break;
+                        case LogNoteType.Message:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine(note.Message);
+                            break;
+                        case LogNoteType.Secondary:
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.WriteLine(note.Message);
+                            break;
+                        case LogNoteType.Success:
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine(note.Message);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                };
 
-                Console.WriteLine("");
-            }
-            catch { }
-        }
+                Processor processor = new Processor();                
+
+                LoggerSingleton.GetLogger().Log("Ready to processing! Please choose folders.", LogNoteType.Info);
+
+                
+                       await processor.OrganizeForRoot(root, destRoot,
+                            true);
+                    
+            };
+            FolderBrowserDialog rootBrowserDialog = new FolderBrowserDialog();
+            rootBrowserDialog.ShowNewFolderButton = true;
+            FolderBrowserDialog destRootBrowserDialog = new FolderBrowserDialog();
+            destRootBrowserDialog.ShowNewFolderButton = true;
+            
+
+            if (rootBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (destRootBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    root = rootBrowserDialog.SelectedPath;
+                    destRoot = destRootBrowserDialog.SelectedPath;
+                    worker.RunWorkerAsync();
+                }
+            }            
+            Console.ReadLine();
+        }        
     }
 }

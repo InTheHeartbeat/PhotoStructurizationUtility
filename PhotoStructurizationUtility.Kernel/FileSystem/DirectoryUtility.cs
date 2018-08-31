@@ -12,11 +12,16 @@ namespace PhotoStructurizationUtility.Kernel.FileSystem
 {
     public static class DirectoryUtility
     {
-        public static string CreateFolderHierarchy(DateTime dateTime, string root, bool isDayLayer)
+        public static string CreateFolderHierarchy(DateTime dateTime, string root, bool isDayLayer, bool isThumbnail)
         {
+            if (isThumbnail)
+            {
+                root = Path.Combine(root, "Thumbnails");
+            }
+
             string yearFolder = Path.Combine(root, dateTime.Year.ToString());
-            string monthFolder = Path.Combine(yearFolder, $"{dateTime.Month.ToString()}. {dateTime.Month.ToString("MMMM", CultureInfo.InvariantCulture)}");
-            string dayFolder = Path.Combine(root, dateTime.Year.ToString());
+            string monthFolder = Path.Combine(yearFolder, $"{dateTime.Month.ToString()}. {dateTime.ToString("MMMM", CultureInfo.InvariantCulture)}");
+            string dayFolder = Path.Combine(root, dateTime.Day.ToString() + ". " + dateTime.ToString("dddd"));
 
             if (!Directory.Exists(yearFolder))
             {
@@ -40,7 +45,7 @@ namespace PhotoStructurizationUtility.Kernel.FileSystem
                 LoggerSingleton.GetLogger().Log($"Creating folder \"{monthFolder}\"...", LogNoteType.Secondary, "DirectoryUtility");
                 try
                 {
-                    Directory.CreateDirectory(yearFolder);
+                    Directory.CreateDirectory(monthFolder);
                     LoggerSingleton.GetLogger().Log($"Folder \"{monthFolder}\" successfully created!", LogNoteType.Success, "DirectoryUtility");
                 }
                 catch (Exception e)
@@ -56,7 +61,7 @@ namespace PhotoStructurizationUtility.Kernel.FileSystem
                 LoggerSingleton.GetLogger().Log($"Creating folder \"{dayFolder}\"...", LogNoteType.Secondary, "DirectoryUtility");
                 try
                 {
-                    Directory.CreateDirectory(yearFolder);
+                    Directory.CreateDirectory(dayFolder);
                     LoggerSingleton.GetLogger().Log($"Folder \"{dayFolder}\" successfully created!", LogNoteType.Success, "DirectoryUtility");
                 }
                 catch (Exception e)

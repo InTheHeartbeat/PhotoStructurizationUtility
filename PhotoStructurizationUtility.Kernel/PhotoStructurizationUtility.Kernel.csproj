@@ -54,7 +54,6 @@
     <Compile Include="Logging\LogNote.cs" />
     <Compile Include="Processing\Processor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\OrientationChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
