@@ -3,10 +3,10 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using ExifLib;
+using PhotoStructurizationUtility.Common.Enums;
+using PhotoStructurizationUtility.Common.Logging;
 using PhotoStructurizationUtility.Kernel.BackCompatibility;
 using PhotoStructurizationUtility.Kernel.FileSystem;
-using PhotoStructurizationUtility.Kernel.Logging;
-using PhotoStructurizationUtility.Kernel.Logging.Enums;
 
 namespace PhotoStructurizationUtility.Kernel.Processing
 {

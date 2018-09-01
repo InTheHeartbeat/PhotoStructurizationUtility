@@ -1,4 +1,4 @@
-﻿namespace PhotoStructurizationUtility.Kernel.Logging.Enums
+﻿namespace PhotoStructurizationUtility.Common.Enums
 {
     public enum LogNoteType
     {

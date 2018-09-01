@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStructurizationUtility
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStructurizationUtility.App", "PhotoStructurizationUtility.App\PhotoStructurizationUtility.App.csproj", "{C00D8A29-CE77-4A80-BF9F-D9369D75B348}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStructurizationUtility.DataAccess", "PhotoStructurizationUtility.DataAccess\PhotoStructurizationUtility.DataAccess.csproj", "{F10ECB75-A9ED-4E79-BFFE-85AB6F117749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStructurizationUtility.Common", "PhotoStructurizationUtility.Common\PhotoStructurizationUtility.Common.csproj", "{634172AA-905E-450A-83F8-D6C872B11976}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C00D8A29-CE77-4A80-BF9F-D9369D75B348}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C00D8A29-CE77-4A80-BF9F-D9369D75B348}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C00D8A29-CE77-4A80-BF9F-D9369D75B348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10ECB75-A9ED-4E79-BFFE-85AB6F117749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10ECB75-A9ED-4E79-BFFE-85AB6F117749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10ECB75-A9ED-4E79-BFFE-85AB6F117749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10ECB75-A9ED-4E79-BFFE-85AB6F117749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{634172AA-905E-450A-83F8-D6C872B11976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634172AA-905E-450A-83F8-D6C872B11976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634172AA-905E-450A-83F8-D6C872B11976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634172AA-905E-450A-83F8-D6C872B11976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

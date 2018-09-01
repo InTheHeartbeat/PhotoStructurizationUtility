@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PhotoStructurizationUtility.Kernel.Logging.Enums;
+using PhotoStructurizationUtility.Common.Enums;
 
-namespace PhotoStructurizationUtility.Kernel.Logging
+namespace PhotoStructurizationUtility.Common.Logging
 {
     public class LogNote
     {
